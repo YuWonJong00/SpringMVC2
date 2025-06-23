@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.util.Map;
 
 @Slf4j
 @RestController
@@ -59,6 +60,12 @@ public class RequestParamController {
             @RequestParam(required = true, defaultValue = "guest") String username,
             @RequestParam (required = false, defaultValue = "-1")int age){
         log.info("username={}, age={}", username, age);
+        return "ok";
+    }
+    @ResponseBody
+    @RequestMapping("/request-param-map")
+    public String requestParamMap(@RequestParam Map<String,Object>paramMap){
+        log.info("username={}, age={}",paramMap.get("username"),paramMap.get("age") );
         return "ok";
     }
     @ResponseBody
